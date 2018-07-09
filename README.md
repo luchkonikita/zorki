@@ -4,7 +4,11 @@
   <img src="https://travis-ci.org/luchkonikita/zorki.svg?branch=master" alt="Travis CI">
 </a>
 
+
 __The command-line utility for visual-regression testing.__
+
+__NOTE: Currently the package is in Alpha, the API will be changing...__
+
 Internally it uses AWS S3 for storing baseline images, so they can be accessed from different machines.
 This is an alternative to storing them into a local folder and commiting to your git
 repository. The latter solution is not bad, but it can easily bloat the size of your git-stored project, so Zorki takes a different approach.
