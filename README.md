@@ -1,5 +1,9 @@
 # Zorki 📸
 
+<a href="https://travis-ci.org/luchkonikita/zorki">
+  <img src="https://travis-ci.org/luchkonikita/zorki.svg?branch=master" alt="Travis CI">
+</a>
+
 __The command-line utility for visual-regression testing.__
 Internally it uses AWS S3 for storing baseline images, so they can be accessed from different machines.
 This is an alternative to storing them into a local folder and commiting to your git
