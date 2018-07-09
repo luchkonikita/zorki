@@ -31,12 +31,12 @@ const {argv} = yargs.command(syntax, description, (y: yargs.Argv) => {
   return y
 })
 
-async function run() {
-  const config = new Config(argv)
-  const data = new Data(config)
-  const logger = new Logger()
-  const runner = new Runner(logger, data)
+const config = new Config(argv)
+const data = new Data(config)
+const logger = new Logger()
+const runner = new Runner(logger, data)
 
+async function run() {
   // Clean directories
   logger.info('1. Preparing directories', 'blue')
   await data.prepare()
@@ -58,10 +58,6 @@ async function run() {
 }
 
 async function cleanup() {
-  const config = new Config(argv)
-  const logger = new Logger()
-  const data = new Data(config)
-
   // Clean remote storage
   logger.info('1. Cleaning up baseline images stored in AWS S3 bucket', 'blue')
   await new BaselinesCleaner(config, logger, data).perform()
@@ -70,10 +66,6 @@ async function cleanup() {
 }
 
 async function list() {
-  const config = new Config(argv)
-  const logger = new Logger()
-  const data = new Data(config)
-
   // Clean remote storage
   logger.info('1. Downloading baseline images', 'blue')
   await new BaselinesPresenter(config, logger, data).perform()
@@ -81,18 +73,25 @@ async function list() {
   logger.info('   All done!', 'green')
 }
 
-switch (argv.action) {
-  case 'run':
-    run().then(() => process.exit())
-    break
-  case 'cleanup':
-    cleanup().then(() => process.exit())
-    break
-  case 'list':
-    list().then(() => process.exit())
-    break
-  default:
-    new Logger().info('Unrecognized command... Exiting', 'red')
-    process.exit(1)
-    break
+async function warn() {
+  new Logger().info('Unrecognized command... Exiting', 'red')
 }
+
+process.on('SIGINT', async () => {
+  new Logger().info('Interrupted... Cleaning up and exiting', 'red')
+  await runner.stop()
+  process.exit()
+})
+
+const command = {run, cleanup, list}[argv.action] || warn
+
+command()
+  .then(async () => {
+    await runner.stop()
+    process.exit()
+  })
+  .catch(async (err) => {
+    await runner.stop()
+    new Logger().info(err.message, 'red')
+    process.exit()
+  })

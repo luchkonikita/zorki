@@ -22,7 +22,7 @@ export default class Runner {
 
   async stop() {
     this.logger.info('   Stoping browser')
-    await this.browser.close()
+    if (this.browser) await this.browser.close()
   }
 
   async run() {
@@ -43,6 +43,7 @@ export default class Runner {
         await this.makeScreenshot(url, storePath, width, retriesLast)
       } else {
         this.logger.info(`   Could not get the screenshot for ${url} at ${width}px`)
+        throw new Error('Screenshots capture failed, please check if your pages are alive')
       }
     }
   }

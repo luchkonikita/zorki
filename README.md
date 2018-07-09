@@ -67,5 +67,3 @@ be your goal to make them look consistent between tests.
 ## TODO
 
 - Write comprehensive README
-- Implement SIGINT handler
-- Handle pessimistic scenarios, like page not being able to respond after 3 retries
