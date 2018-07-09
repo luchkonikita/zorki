@@ -1,0 +1,10 @@
+{
+  "urls": [
+    "http://localhost:3001"
+  ],
+  "storeDir": "./tmp/test",
+  "screenWidths": [1440, 1920],
+  "accessKeyId": "TEST_ID",
+  "secretAccessKey": "TEST_KEY",
+  "bucket": "TEST_BUCKET"
+}

@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.idea
+.npm
+.vscode
+*.DS_Store
+*.log
+/log
+/tmp
+config.json
+dest
+logs
+node_modules
+npm-debug.log*
+test/tmp
+tmp
+zorki.json
