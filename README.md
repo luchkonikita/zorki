@@ -33,9 +33,9 @@ Example:
   "bucket": "AWS_S3_BUCKET"
 }
 ```
-This will run tests against 'http://example.com' with screen widths of 320 and 1920 pixels.
+This will run tests against `http://example.com` with screen widths of 320 and 1920 pixels.
 Directory `./tmp` will be used as an intermediate storage.
-'AWS_S3_BUCKET' will be the bucket used in a cloud.
+`AWS_S3_BUCKET` will be the bucket used in a cloud.
 
 ## Usage
 
