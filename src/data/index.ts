@@ -1,5 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
+import * as mkdirp from 'mkdirp'
 import * as rimraf from 'rimraf'
 
 import Config from '../config'
@@ -34,7 +35,7 @@ export default class Data implements IData {
   }
 
   async prepare() {
-    if (!fs.existsSync(this.config.storeDir)) fs.mkdirSync(this.config.storeDir)
+    if (!fs.existsSync(this.config.storeDir)) mkdirp.sync(this.config.storeDir)
     const dirs = [this.config.screenshotsDir, this.config.baselinesDir, this.config.diffsDir]
 
     for (const dir of dirs) {
