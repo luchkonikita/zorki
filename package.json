@@ -1,6 +1,6 @@
 {
   "name": "zorki",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Visual regression testing via CLI",
   "main": "dest/index.js",
   "author": "Nikita Luchko",
